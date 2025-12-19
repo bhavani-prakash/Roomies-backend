@@ -13,3 +13,17 @@ export const addExpense = async (req,res)=>{
         
     }
 }
+
+export const getExpense = async(req,res)=>{
+    try {
+        const expenses = await Expense.find().sort({createdAt:-1});
+        res.status(200).json(expenses);
+        
+    } catch (error) {
+        
+        console.log("Error while getting the Expenses");
+        console.log(error);
+        res.send(500).json({message:"Server error in geting Expenses"})
+    
+    }
+}
