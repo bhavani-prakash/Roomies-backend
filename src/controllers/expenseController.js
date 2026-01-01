@@ -27,3 +27,17 @@ export const getExpense = async(req,res)=>{
     
     }
 }
+
+export const deleteExpense= async(req,res)=>{
+    try {
+        const {id} = req.params;
+        await Expense.findByIdAndDelete(id);
+        res.status(200).json({message:"Expense deleted successfully"});
+        
+        
+    } catch (error) {
+        res.status(500).json({message:"Error in deleting expense"});
+        console.log("Error in expense controler while deleting the note ")
+        
+    }
+}
